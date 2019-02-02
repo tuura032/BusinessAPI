@@ -1,0 +1,54 @@
+HTTP VERB	ENDPOINT/URI	WHAT IT DOES
+GET	api/v1/messages/	Return all messages with trainer
+POST	api/v1/messages/	Create a new message
+DELETE	api/v1/messages/{id}	Delete a message
+GET	api/v1/orders		Get all orders
+GET	api/v1/{id}/orders	Get all orders from a customer
+POST	api/v1/orders/		Create a new order
+PUT	api/v1/orders/{id}/{orderId}	update a customers order
+GET	api/v1/orders/{id}/{orderId}	Get order from a customer
+GET	api/v1/client/{id}	Get client information
+GET	api/v1/client		Admin gets all clients informamtion
+PUT	api/v1/client/{id}	Update client information
+DELETE 	api/v1/client/{id}	Admin can delete client
+
+
+*client information from /client/{id}
+id
+Name
+Wt.
+Height.
+Age / DOB
+# sessions remaining
+payment method
+email
+phone
+
+-	Small Business API
+	Roles: Abstract class User (Admin, Clients)
+	Entities: Product, Order, Client (?), Messages
+
+	Definitions:
+		Product: Services, ie training, nutrition, assessment, etc
+		Order: # of a given product, price, etc
+		Client: order #, total sessions, 
+		Message: client can chat with trainer. 
+	
+	Relationships:
+		Client – Product: many-to-many
+		Product – Order: many-to-many
+		Client – Order: one-to-many
+		Client – Message : one to many
+
+	User Stories:
+		Clients and Trainer can login
+		Clients can register
+		Clients can order products
+		Clients can message trainer
+		Clients can view sessions, order history, payment, etc
+		Clients can update sessions, recent orders, payment, etc.
+		Admins can remove users, messages
+		Admin can update training sessions
+		Passwords are salted and hashed
+		Users receive JWTs when logging in, endpoints are secured
+		Trainer and client can communicate with messages.
