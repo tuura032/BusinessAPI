@@ -1,32 +1,52 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Order {
 
-	private int orderId;
-	private int customerId;
+	private Long orderId;
+	private Long clientId;
+	private String orderDescription;
+	//private Iterable<ProductOrder> productOrders;
 	
-	public Order(int orderId, int customerId) {
+	public Order(Long orderId, Long clientId, String orderDescription) {
 		this.setOrderId(orderId);
-		this.setCustomerId(customerId);
-	}
-	
-	public Order() {
-		// it worked when I added this?
+		this.setClientId(clientId);
+		this.setOrderDescription(orderDescription);
+		//this.setProductOrders(customerId);
 	}
 
-	public int getOrderId() {
+	public Order() {
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public Long getClientId() {
+		return clientId;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
+	}
+
+	public String getOrderDescription() {
+		return orderDescription;
+	}
+
+	public void setOrderDescription(String orderDescription) {
+		this.orderDescription = orderDescription;
 	}
 }
