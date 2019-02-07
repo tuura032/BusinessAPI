@@ -1,5 +1,14 @@
 C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\App.java
-C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\entity\Order.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\entity\ProductOrder.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\repository\OrderRepository.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\service\ClientService.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\repository\ClientRepository.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\service\MessageService.java
 C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\controller\MessageController.java
-C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\entity\Client.java
-C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\entity\Message.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\entity\Client.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\controller\ClientController.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\entity\Order.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\controller\OrderController.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\repository\MessageRepository.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\service\OrderService.java
+C:\Users\owner\eclipse-workspace\BusinessBackEnd\src\main\java\com\promineotech\BusinessBackEnd\entity\Message.java

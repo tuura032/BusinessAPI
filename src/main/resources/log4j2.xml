@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{yyyy-MM-dd MM:mm:ss.SSS} %Sp ${hostName}
+			--- [%15.15t] %-40.40c{1.} : %n%n%ex
+		</Property>
+	</Properties>
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT"
+			follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<File name="FileAppender" fileName="logs/app.log">
+			<PatternLayout>
+        		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      		</PatternLayout>
+		</File>
+		 
+		 <!-- <RollingFile name="FileAppender"
+			fileName="logs/log4j2-example.log"
+			filePattern="logs/log4j2-example-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggerPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>  -->
+	</Appenders>
+	<Loggers>
+		<Logger name="com.example.log4j2example" level="debug"
+			additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+		</Logger>
+		<Root level="trace">
+			<AppenderRef ref="FileAppender" level="info" />
+			<AppenderRef ref="ConsoleAppender" level="info" />
+		</Root>
+	</Loggers>
+</Configuration>
