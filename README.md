@@ -9,33 +9,32 @@ The application
 uses Spring-boot with Maven and JPA upon a MySQL database.
 
 
-src/main/java/com/promineotech/BusinessBackEnd
-
+src/main/java/com/promineotech/BusinessBackEnd/..
 ----------------------------------------------
 
 
 
 
-<ul><li>
 
+../
 
 
 entity
 
 --------
 Primary entities include the Client (user), Orders, and Messages. Additional entities assist with login and registering new users.
-</li>
 
 
-<li>controller
+
+../controller
 
 ----------
 Contains all CRUD URI endpoints for Clients, Orders, Login, and Messages.
-</li>
 
 
-<li>
 
+
+../
 
 
 repository
@@ -44,15 +43,14 @@ repository
 
 
 JPA persists data through the database for each entity. 
-</li>
 
 
 
-<li>
 
+
+../
 
 service
 
 --------
 Provides logic to operate on data sent to the DAO repository.
-</li></ul>
