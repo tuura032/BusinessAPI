@@ -16,7 +16,7 @@ src/main/java/com/promineotech/BusinessBackEnd
 
 
 
-<li>
+<ul><li>
 
 
 
@@ -27,11 +27,11 @@ Primary entities include the Client (user), Orders, and Messages. Additional ent
 </li>
 
 
-<ul><li>controller
+<li>controller
 
 ----------
 Contains all CRUD URI endpoints for Clients, Orders, Login, and Messages.
-<li>
+</li>
 
 
 <li>
