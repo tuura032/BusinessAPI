@@ -16,7 +16,7 @@ src/main/java/com/promineotech/BusinessBackEnd/..
 
 
 
-../
+
 
 
 entity
@@ -26,7 +26,7 @@ Primary entities include the Client (user), Orders, and Messages. Additional ent
 
 
 
-../controller
+controller
 
 ----------
 Contains all CRUD URI endpoints for Clients, Orders, Login, and Messages.
@@ -34,7 +34,7 @@ Contains all CRUD URI endpoints for Clients, Orders, Login, and Messages.
 
 
 
-../
+
 
 
 repository
@@ -48,7 +48,7 @@ JPA persists data through the database for each entity.
 
 
 
-../
+
 
 service
 
