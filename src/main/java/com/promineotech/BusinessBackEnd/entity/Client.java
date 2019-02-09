@@ -32,8 +32,7 @@ public class Client {
 		
 	}
 	
-	public Client(Long id, String firstName, String lastName, String email, String phone, String dob) {
-		this.setId(id);
+	public Client(String firstName, String lastName, String email, String phone, String dob) {
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setEmail(email);

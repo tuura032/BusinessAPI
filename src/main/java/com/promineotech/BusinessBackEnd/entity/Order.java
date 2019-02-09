@@ -1,11 +1,17 @@
 package com.promineotech.BusinessBackEnd.entity;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,11 +37,16 @@ public class Order {
 	private Client client;
 	
 	private String orderDescription;
-	//private Iterable<ProductOrder> productOrders;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_order",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+	List<Product> products;
+	
+	
 	public Order() {
 	}
-
 	
 	public Long getOrderId() {
 		return orderId;
@@ -59,5 +70,13 @@ public class Order {
 	
 	public void setClient (Client client) {
 		this.client = client;
+	}
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+	
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 }

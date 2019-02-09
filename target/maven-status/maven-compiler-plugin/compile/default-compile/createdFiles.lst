@@ -1,13 +1,13 @@
 com\promineotech\BusinessBackEnd\App.class
 com\promineotech\BusinessBackEnd\repository\OrderRepository.class
-com\promineotech\BusinessBackEnd\service\ClientService.class
 com\promineotech\BusinessBackEnd\service\MessageService.class
 com\promineotech\BusinessBackEnd\controller\ClientController.class
 com\promineotech\BusinessBackEnd\entity\Message.class
 com\promineotech\BusinessBackEnd\repository\ClientRepository.class
 com\promineotech\BusinessBackEnd\repository\MessageRepository.class
-com\promineotech\BusinessBackEnd\controller\OrderController.class
 com\promineotech\BusinessBackEnd\entity\Order.class
 com\promineotech\BusinessBackEnd\service\OrderService.class
-com\promineotech\BusinessBackEnd\controller\MessageController.class
 com\promineotech\BusinessBackEnd\entity\Client.class
+com\promineotech\BusinessBackEnd\service\ClientService.class
+com\promineotech\BusinessBackEnd\controller\OrderController.class
+com\promineotech\BusinessBackEnd\controller\MessageController.class

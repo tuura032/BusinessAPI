@@ -44,3 +44,5 @@ public class AuthService {
 		throw new AuthenticationException("Incorrect username or password.");
 	}
 }
+
+// add methods to do jwt checking
