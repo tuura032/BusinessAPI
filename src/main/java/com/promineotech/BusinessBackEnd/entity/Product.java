@@ -1,8 +1,9 @@
 package com.promineotech.BusinessBackEnd.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,72 +11,91 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "products")
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	@Column(name = "product_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long productId;
 	
+	@Column(name = "serial_id")
+	private Long serialId;
+	
+	@Column(name = "product_name")
 	private String productName;
 	
-//	private Long quantity;
+	@Column(name = "product_description")
+	private String productDescription;
 	
-	private String price;
+	@Column(name = "price", precision = 2)
+	private double price;
 	
-	@ManyToMany(mappedBy = "products")
-	List<Order> orders;
+	@Column(name = "last_updated_time")
+	@UpdateTimestamp
+	private LocalDateTime lastUpdatedTime;
 	
-	public Product() {
+	@ManyToMany(mappedBy = "productList")
+	@JsonIgnoreProperties("productList")
+	private List<Order> orderList;
+	
+	public Long getProductId() {
+		return productId;
 	}
 	
-	
-	public Long getid() {
-		return id;
-	}
-	public void setid(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
-//	public Long getQuantity() {
-//		return quantity;
-//	}
-//	public void setQuantity(Long quantity) {
-//		this.quantity = quantity;
-//	}
 	public String getProductName() {
 		return productName;
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+	
+	public String getProductDescription() {
+		return productDescription;
+	}
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
-	public List<Order> getOrders() {
-		return orders;
+	public LocalDateTime getLastUpdatedTime() {
+		return lastUpdatedTime;
 	}
 	
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setLastUpdatedTime(LocalDateTime lastUpdatedTime) {
+		this.lastUpdatedTime = lastUpdatedTime;
 	}
-
-
-	public Long getProductId() {
-		return productId;
+	
+	public List<Order> getOrderList() {
+		return orderList;
 	}
-
-
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+	
+	public Long getSerialId() {
+		return serialId;
+	}
+	
+	public void setSerialId(Long serialId) {
+		this.serialId = serialId;
 	}
 }
+

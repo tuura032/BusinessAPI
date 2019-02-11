@@ -3,8 +3,6 @@ package com.promineotech.BusinessBackEnd.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,26 +51,28 @@ public class OrderService {
 	//create new order
 	public Order createOrder(Long clientId, CreateOrderRequest orderRequest) {
 		
-		System.out.println("=========== ORDER SERVICE STARTS HERE ===========");
+		// get order
 		Order order = orderRequest.getOrder();
-		System.out.println(order.getOrderDescription());
-		//Iterable<Long> idList = orderRequest.getProductIds();
-		//List<Product> productList = prepo.findAllById(idList);
 		
-		
+		// Put products onto order
 		List<Product> productList = new ArrayList<Product>();
-	
-		for (Long productId : orderRequest.getProductIds()) {
-			Product product = prepo.findProductByProductId(productId);
+		for (Long serialId : orderRequest.getSerialIds()) {
+			Product product = prepo.findProductBySerialId(serialId);
 			productList.add(product);
-			System.out.println(product.getProductName());
 		}
+		order.setProductList(productList);
 		
-
-		// associate order and products with client
+		// Set Total Cost
+		double totalCost = 0;
+		for (Product product : productList) {
+			totalCost = totalCost + product.getPrice();
+			product.getProductName();
+		}
+		order.setTotalPrice(totalCost);
+		
+		// associate order with client
 		Client foundClient = crepo.findById(clientId).orElse(null);
 		if (foundClient != null) {
-			//order.setProducts(productList);
 			order.setClient(foundClient);
 		}
 		return repo.save(order);

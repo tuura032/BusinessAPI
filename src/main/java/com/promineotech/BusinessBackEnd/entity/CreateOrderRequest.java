@@ -6,14 +6,14 @@ import java.util.List;
 public class CreateOrderRequest {
 
 	private Order order;
-	private List<Long> productIds;
+	private List<Long> serialIds;
 	
 	public CreateOrderRequest() {
 	}
 	
-	public CreateOrderRequest(Order order, List<Long> productIds) {
+	public CreateOrderRequest(Order order, List<Long> SerialIds) {
 		this.setOrder(order);
-		this.setProductIds(productIds);
+		this.setSerialIds(SerialIds);
 	}
 	
 	public Order getOrder() {
@@ -23,11 +23,11 @@ public class CreateOrderRequest {
 		this.order = order;
 	}
 	
-	public List<Long> getProductIds() {
-		return productIds;
+	public List<Long> getSerialIds() {
+		return serialIds;
 	}
-	
-	public void setProductIds(List<Long> productIds) {
-		this.productIds = productIds;
+
+	public void setSerialIds(List<Long> serialIds) {
+		this.serialIds = serialIds;
 	}
 }

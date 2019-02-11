@@ -16,7 +16,7 @@ import com.promineotech.BusinessBackEnd.service.ClientService;
 @RestController
 public class ClientController {
 
-	private static final Logger logger = LogManager.getLogger(ClientController.class);
+	//private static final Logger logger = LogManager.getLogger(ClientController.class);
 	
 	@Autowired
 	ClientService service;

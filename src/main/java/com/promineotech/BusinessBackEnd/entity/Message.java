@@ -1,5 +1,8 @@
 package com.promineotech.BusinessBackEnd.entity;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,20 +12,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-/*
- * TODO: Add time of post
- */
 
 @Entity
 @Table(name = "messages")
 public class Message {
 
 	@Id
+	@Column(name = "message_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long messageId;
 	
@@ -33,7 +35,12 @@ public class Message {
 	@JsonProperty("client_id")
 	private Client client;
 	
+	@Column(name = "comment", nullable = false)
 	private String comment;
+	
+	@Column(name = "created_at", nullable = false, updatable = false)
+	@CreationTimestamp
+	private LocalDateTime createdAt;
 	
 	public Message() {}
 	
@@ -59,5 +66,13 @@ public class Message {
 	
 	public void setClient (Client client) {
 		this.client = client;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 }

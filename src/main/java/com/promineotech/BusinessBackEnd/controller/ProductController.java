@@ -17,25 +17,33 @@ public class ProductController {
 	ProductService service;
 	
 	// Create a new product
-	@RequestMapping(value="/product", method=RequestMethod.POST)
+	@RequestMapping(value="/products", method=RequestMethod.POST)
 	public Product newProduct(@RequestBody Product product) {
 		return service.createProduct(product);
 	}
 	
 	// Get all products
-	@RequestMapping(value="/product")
+	@RequestMapping(value="/products")
 	public Iterable<Product> getAllProducts() {
 		return service.getProducts();
 	}
 	
 	// Get a product
-	@RequestMapping(value="/product/{productId}")
+	@RequestMapping(value="/products/{productId}")
 	public Product getProduct(@PathVariable Long id) {
 		return service.getProduct(id);
 	}
 	
-//	// Create product order
-//	@RequestMapping(value="/client/{clientId}/product/{productId}", method=RequestMethod.POST)
-//	public Product addProduct
+	// Update a product
+	@RequestMapping(value="products/productId}", method=RequestMethod.PUT)
+	public Product updateProduct(@PathVariable Long productId, @RequestBody Product product) {
+		return service.updateProduct(productId, product);
+	}
+	
+	// Delete a product
+	@RequestMapping(value="products/{productId}", method=RequestMethod.DELETE)
+	public void deleteProduct(@PathVariable Long id) {
+		service.deleteProduct(id);
+	}
 	
 }

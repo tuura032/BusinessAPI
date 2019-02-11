@@ -8,8 +8,7 @@ import com.promineotech.BusinessBackEnd.entity.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-	Product findProductByProductId(Long productId);
+	Product findProductBySerialId(Long serialId);
 	
-	// This didn't work
 	List<Product> findAllById(Iterable<Long> productIds);
 }

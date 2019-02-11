@@ -43,6 +43,10 @@ public class AuthService {
 		}
 		throw new AuthenticationException("Incorrect username or password.");
 	}
+	
+//	public Boolean checkAuthorization(Client client) {
+//		check jwt token
+//	}
 }
 
 // add methods to do jwt checking
