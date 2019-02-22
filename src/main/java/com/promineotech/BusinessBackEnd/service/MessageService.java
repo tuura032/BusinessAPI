@@ -10,26 +10,54 @@ import com.promineotech.BusinessBackEnd.repository.*;
 public class MessageService {
 
 	@Autowired
-	MessageRepository mrepo;
+	private MessageRepository mrepo;
 	
 	@Autowired
-	ClientRepository crepo;
+	private ClientRepository crepo;
 	
+	@Autowired
+	private AuthService authService;
+	
+	
+	// get request to test HttpServletRequest
+	public String getRequest() {
+		return authService.getJwt();
+	}
 	
 	// return all messages
 	public Iterable<Message> displayMessage() {
-		return mrepo.findAll();
+		// get user from jwt
+		String jwt = authService.getJwt();
+		Client user = crepo.findByUsername(authService.getUserNameFromJwtToken(jwt));
+		
+		// validate user
+		if (user != null && user.getRole().equals("ROLE_ADMIN")) {
+			return mrepo.findAll();
+		}
+		return null;
 	}
 	
 	// return all messages by client id
 	public Iterable<Message> getMessageByClientId(Long id) {
 		
-		return mrepo.getMessagesByClientId(id);
-	}
-	
-	// return single message by message id
-	public Message getMessageById(Long id) {
-		return mrepo.findById(id).orElse(null);
+		// get user from id
+		Client client = crepo.findById(id).orElse(null);
+		
+		// get user from jwt
+		String jwt = authService.getJwt();
+		Client user = crepo.findByUsername(authService.getUserNameFromJwtToken(jwt));
+		
+		// validate user
+		if (authService.validateJwtToken(jwt, client.getUsername()) 
+				|| (user.getRole().equals("ROLE_ADMIN"))) {
+			// return messages if client is valid
+			return mrepo.getMessagesByClientId(id);
+		} else {
+			// should actually throw exception
+			System.out.println("null returned, uh oh! =====================");
+			return null;
+		}
+		
 	}
 	
 	// delete message by message id
@@ -39,10 +67,28 @@ public class MessageService {
 	
 	// create a new message with client id
 	public Message createMessage(Long clientId, Message message) {
-		Client foundClient = crepo.findById(clientId).orElse(null);
-		if (foundClient != null) {
-			message.setClient(foundClient);
+		
+		// get jwt
+		String jwt = authService.getJwt();
+		
+		Client user = crepo.findByUsername(authService.getUserNameFromJwtToken(jwt));
+		Client client = crepo.findById(clientId).orElse(null);
+		
+		if (client != null && (authService.validateJwtToken(jwt, client.getUsername())
+				|| user.getRole().equals("ROLE_ADMIN"))) {
+			message.setClient(client);
+	
+			// Set user that sent message
+			if (user.getRole().equals("ROLE_ADMIN")) {
+				message.setUsername(user.getUsername());
+			} else {
+				message.setUsername(client.getUsername());
+			}
+			
+			return mrepo.save(message);
 		}
-		return mrepo.save(message);
+		// return exception
+		return null;
+		
 	}
 }

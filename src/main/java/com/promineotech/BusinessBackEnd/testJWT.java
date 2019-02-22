@@ -15,8 +15,9 @@ public class testJWT {
 		
 		// admin jwt
 		String jwt = Jwts.builder()
-				.claim("role", "ADMIN")
-				.setSubject("BBB JWT")
+				.claim("role", "USER")
+				.claim("username", "tuura032")
+				.setSubject("tuura032")
 				.signWith(key)
 				.compact();
 		
@@ -28,9 +29,14 @@ public class testJWT {
 		
 		System.out.println(jwt);
 		
+		System.out.println(key);
+		
 		System.out.println(encodedKey);
+		
+		System.out.println(decodedKey);
 
-		System.out.println(Jwts.parser().setSigningKey(decodedKey).parseClaimsJws(jwt).getBody().getSubject());
+		System.out.println(Jwts.parser().setSigningKey(decodedKey).parseClaimsJws(jwt).getBody().getSubject().equals("tuura032"));
+		System.out.println(Jwts.parser().setSigningKey(decodedKey).parseClaimsJws(jwt).getBody().get("role"));
 	}
 
 }

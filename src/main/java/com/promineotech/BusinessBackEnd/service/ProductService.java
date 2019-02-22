@@ -2,7 +2,10 @@ package com.promineotech.BusinessBackEnd.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.promineotech.BusinessBackEnd.entity.Client;
 import com.promineotech.BusinessBackEnd.entity.Product;
+import com.promineotech.BusinessBackEnd.repository.ClientRepository;
 import com.promineotech.BusinessBackEnd.repository.ProductRepository;
 
 @Service
@@ -10,12 +13,27 @@ public class ProductService {
 
 	
 	@Autowired
-	ProductRepository repo;
+	private ProductRepository repo;
+	
+	@Autowired
+	private AuthService authService;
+	
+	@Autowired
+	private ClientRepository crepo;
 	
 	// create a product in the database
 	public Product createProduct(Product product) {
 		//product.setLastUpdatedTime(LocalDateTime.now());
-		return repo.save(product);
+		
+		// get jwt
+		String jwt = authService.getJwt();
+		Client user = crepo.findByUsername(authService.getUserNameFromJwtToken(jwt));
+		
+		// validate jwt
+		if (user.getRole().equals("ROLE_ADMIN")) {		
+			return repo.save(product);
+		}
+		return null;
 	}
 	
 	// get product information

@@ -27,7 +27,7 @@ public class ClientController {
 		return service.getClient(id);
 	}
 	
-	// create new client.
+	// Admin creates new client.
 	@RequestMapping(value="/client", method=RequestMethod.POST)
 	public Client createClient(@RequestBody Client client) {
 		return service.createClient(client);

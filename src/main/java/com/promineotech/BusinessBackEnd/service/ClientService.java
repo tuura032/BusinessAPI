@@ -1,5 +1,9 @@
 package com.promineotech.BusinessBackEnd.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +43,16 @@ public class ClientService {
 	
 	public Client createClient(Client client) {
 		return repo.save(client);
+	}
+	
+	public static LocalDate formatDob(String dob) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dobFormatted;
+		try {
+			dobFormatted = LocalDate.parse(dob, dtf);
+		} catch (DateTimeParseException ex) {
+			dobFormatted = LocalDate.of(1900, 01, 01);
+		}
+		return dobFormatted;
 	}
 }

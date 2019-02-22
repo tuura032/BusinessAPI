@@ -1,30 +1,53 @@
 package com.promineotech.BusinessBackEnd.entity;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.NaturalId;
 
 @Entity
+@Table(name = "users", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {
+            "username"
+        }),
+        @UniqueConstraint(columnNames = {
+            "email"
+        })
+})
 public class Client {
 
 	private Long id;
+	
+	@NotBlank
+    @Size(min=3, max = 25)
 	private String username;
 	private String hash;
 	private String firstName;
 	private String lastName;
+	
+	@NaturalId
+    @NotBlank
+    @Size(max = 50)
+    @Email
 	private String email;
 	private String phone;
 	
 	@Temporal(TemporalType.DATE)
 	private LocalDate dob;
+	
+	private String role;
 	
 	// also height, wt, address, payment, etc
 	
@@ -32,7 +55,7 @@ public class Client {
 		
 	}
 	
-	public Client(String firstName, String lastName, String email, String phone, String dob) {
+	public Client(String firstName, String lastName, String email, String phone, LocalDate dob) {
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setEmail(email);
@@ -40,6 +63,7 @@ public class Client {
 		this.setDob(dob);
 	}
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
@@ -82,20 +106,12 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public String getDob() {
-		return dob.toString();
+	public LocalDate getDob() {
+		return dob;
 	}
 
-	public void setDob(String dob) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate dobFormatted;
-		try {
-			dobFormatted = LocalDate.parse(dob, dtf);
-		} catch (DateTimeParseException ex) {
-			dobFormatted = LocalDate.of(1900, 01, 01);
-		}
-		
-		this.dob = dobFormatted;
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
 
 	@Column(unique=true)
@@ -113,6 +129,14 @@ public class Client {
 
 	public void setHash(String hash) {
 		this.hash = hash;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }

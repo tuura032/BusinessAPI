@@ -1,8 +1,10 @@
 package com.promineotech.BusinessBackEnd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,17 +30,10 @@ public class MessageController {
 		return service.getMessageByClientId(clientId);
 	}
 	
-	// GET single message
-	@RequestMapping("/messages/{messageId}")
-	public Message singleMessage(@PathVariable Long messageId) {
-		return service.getMessageById(messageId);
-	}
-	
 	// Create new messagse POST
 	@RequestMapping(value="/client/{clientId}/messages", method=RequestMethod.POST)
 	public Message newMessage(@PathVariable Long clientId, 
 			@RequestBody Message message) {
-
 		return service.createMessage(clientId, message);
 	}
 	
@@ -48,5 +43,20 @@ public class MessageController {
 		service.deleteMessage(messageId);
 	}
 
+	/*
+	 * test methods
+	 */
+	
+	// get header information from @RequestHeader
+	@RequestMapping(value="/header")
+	public String showHeader(@RequestHeader HttpHeaders header) {
+		return header.getFirst("Authorization");
+	}
+	
+	// get header information from HttpServletRequest
+	@RequestMapping(value="/request")
+	public String getAuthorization() {
+		return service.getRequest();
+	}
 	
 }

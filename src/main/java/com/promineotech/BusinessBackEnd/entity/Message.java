@@ -42,6 +42,8 @@ public class Message {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
+	private String username;
+	
 	public Message() {}
 	
 	public Long getMessageId() {
@@ -74,5 +76,13 @@ public class Message {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

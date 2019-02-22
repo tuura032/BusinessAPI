@@ -11,37 +11,38 @@ import com.promineotech.BusinessBackEnd.entity.Product;
 import com.promineotech.BusinessBackEnd.service.ProductService;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
 	ProductService service;
 	
 	// Create a new product
-	@RequestMapping(value="/products", method=RequestMethod.POST)
+	@RequestMapping(value="", method=RequestMethod.POST)
 	public Product newProduct(@RequestBody Product product) {
 		return service.createProduct(product);
 	}
 	
 	// Get all products
-	@RequestMapping(value="/products")
+	@RequestMapping(value="")
 	public Iterable<Product> getAllProducts() {
 		return service.getProducts();
 	}
 	
 	// Get a product
-	@RequestMapping(value="/products/{productId}")
+	@RequestMapping(value="/{productId}")
 	public Product getProduct(@PathVariable Long id) {
 		return service.getProduct(id);
 	}
 	
 	// Update a product
-	@RequestMapping(value="products/productId}", method=RequestMethod.PUT)
+	@RequestMapping(value="/{productId}", method=RequestMethod.PUT)
 	public Product updateProduct(@PathVariable Long productId, @RequestBody Product product) {
 		return service.updateProduct(productId, product);
 	}
 	
 	// Delete a product
-	@RequestMapping(value="products/{productId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{productId}", method=RequestMethod.DELETE)
 	public void deleteProduct(@PathVariable Long id) {
 		service.deleteProduct(id);
 	}
